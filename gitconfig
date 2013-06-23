@@ -1,0 +1,9 @@
+[user]
+	name = Pema Geyleg
+	email = pema.geyleg@gmail.com
+[color]
+	ui = true
+	diff = true
+	status = true
+	branch = true
+	interactive = true
