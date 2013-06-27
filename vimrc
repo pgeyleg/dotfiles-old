@@ -15,15 +15,18 @@ set backspace=indent,eol,start
 set hidden
 set nowrap
 set title
-syntax on
+
+"open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
 "indentation settings (soft tabs, two spaces)
 set autoindent
 set expandtab
-set shiftwidth=2
 set smartindent
-set smarttab
+set shiftwidth=2
 set tabstop=2
+set smarttab
 filetype plugin indent on
 
 "enable solarized color scheme
@@ -105,3 +108,57 @@ if(has("persistent_undo"))
   set undofile
   set undolevels=1000
 endif
+
+augroup vimrcEx
+  autocmd!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " Cucumber navigation commands
+  autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
+  autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
+
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+  " Enable spellchecking for Markdown
+  autocmd BufRead,BufNewFile *.md setlocal spell
+
+  " Automatically wrap at 80 characters for Markdown
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+
+  " Delete trailing whitespace
+  func! DeleteTrailingWhitespace()
+    exec "normal mZ"
+    %s/\s\+$//e
+    exec "normal `Z"
+  endfunc
+
+  autocmd BufWritePre *.{c,cpp,h,hpp,m,mm} :call DeleteTrailingWhitespace()
+  autocmd BufWritePre *.{erb,feature,haml,rb,yml} :call DeleteTrailingWhitespace()
+  autocmd BufWritePre *.{css,html,js,json,less,scss,xml} :call DeleteTrailingWhitespace()
+  autocmd BufWritePre *.{java,php} :call DeleteTrailingWhitespace()
+
+  " Associate some filetypes with their proper syntax
+  autocmd BufRead,BufNewFile *.applescript set filetype=applescript
+  autocmd BufRead,BufNewFile *.json set filetype=javascript
+  autocmd BufRead,BufNewFile *.prawn set filetype=ruby
+  autocmd BufRead,BufNewFile *.txt set filetype=text
+
+  autocmd FileType gitcommit,markdown,text set spell
+
+  autocmd FileType scss set iskeyword=@,48-57,_,-,?,!,192-255
+
+  " Enable soft-wrapping for text files
+  autocmd FileType eruby,html,markdown,text,xhtml setlocal wrap linebreak nolist
+augroup END
+
