@@ -14,6 +14,7 @@ set cursorline
 set backspace=indent,eol,start
 set hidden
 set nowrap
+set title
 syntax on
 
 "indentation settings (soft tabs, two spaces)
@@ -23,7 +24,6 @@ set shiftwidth=2
 set smartindent
 set smarttab
 set tabstop=2
-set list listchars=extends:…,tab:»·,trail:·
 filetype plugin indent on
 
 "enable solarized color scheme
@@ -71,3 +71,15 @@ set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "disable tabs for html and xml files
 autocmd filetype html,xml set listchars-=tab:>.
+
+"Syntastic
+let g:syntastic_enable_signs=1
+
+"enable paste mode
+set pastetoggle=<F2>
+
+"stop using these keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
