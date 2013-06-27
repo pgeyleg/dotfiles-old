@@ -37,14 +37,20 @@ set hlsearch
 nnoremap <silent> <leader>H :set hlsearch!<CR>
 nnoremap <silent> <leader>h :nohlsearch<CR>
 
-"use the transparent background
-let g:solarized_termtrans = 1
-colorscheme solarized
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
+if &t_Co >= 256 || has("gui_running")
+  "use the transparent background
+  let g:solarized_termtrans = 1
+  colorscheme solarized
+  set background=light
+ endif
+
+ if &t_Co > 2 || has("gui_running")
+ " switch syntax highlighting on, when the terminal has colors
+  let g:solarized_termtrans = 1
+  colorscheme solarized
+  syntax on
+  set background=dark
+ endif
 
 "NERDCommenter
 let NERDSpaceDelims = 1
@@ -88,3 +94,14 @@ map <right> <nop>
 set wildignore+=*.class,*.o,.DS_Store
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/**,*/build/*,*/*.dSYM/*,*/.sass-cache/*
 set wildmenu
+
+"store backup & swap files elsewhere to avoid directory pollution
+set backupdir=~/.vim/tmp,/tmp
+set directory=~/.vim/tmp,/tmp
+
+"persistent undo
+if(has("persistent_undo"))
+  set undodir=~/.vim/undo
+  set undofile
+  set undolevels=1000
+endif
