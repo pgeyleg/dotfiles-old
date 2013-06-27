@@ -12,6 +12,7 @@ set ruler
 set cursorline
 set backspace=indent,eol,start
 set hidden
+set nowrap
 "set map key to ,
 syntax on
 filetype plugin indent on
@@ -47,3 +48,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+"highlight whitespaces
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+"disable tabs for html and xml files
+autocmd filetype html,xml set listchars-=tab:>.
