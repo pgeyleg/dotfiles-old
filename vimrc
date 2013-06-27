@@ -83,3 +83,8 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+"to be ignored
+set wildignore+=*.class,*.o,.DS_Store
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tmp/**,*/build/*,*/*.dSYM/*,*/.sass-cache/*
+set wildmenu
