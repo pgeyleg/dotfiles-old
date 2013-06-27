@@ -27,3 +27,11 @@ if has('gui_running')
 else
     set background=dark
 endif
+
+"NERDCommenter
+let NERDSpaceDelims = 1
+map <leader>/ <plug>NERDCommenterToggle
+
+"NERDTree
+map \ :NERDTreeToggle<CR>
+map \| :NERDTreeFind<CR>
