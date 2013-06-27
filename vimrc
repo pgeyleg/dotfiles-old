@@ -1,15 +1,26 @@
 "not compatible with vi
 set nocompatible
-
+" Quickly edit/reload the vimrc file
 "use pathogen to manage bundle
 execute pathogen#infect()
+let mapleader = " "
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+set number
+set ruler
+set cursorline
+set backspace=indent,eol,start
+set hidden
 "set map key to ,
-let mapleader = ","
+syntax on
+filetype plugin indent on
 
 "enable solarized color scheme
 syntax enable
-let g:solarized_termcolors=256
+
+"use the transparent background
+let g:solarized_termtrans = 1
 colorscheme solarized
 if has('gui_running')
     set background=light
