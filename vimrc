@@ -3,6 +3,7 @@ set nocompatible
 " Quickly edit/reload the vimrc file
 "use pathogen to manage bundle
 execute pathogen#infect()
+"set map key to space key
 let mapleader = " "
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -13,12 +14,28 @@ set cursorline
 set backspace=indent,eol,start
 set hidden
 set nowrap
-"set map key to ,
 syntax on
+
+"indentation settings (soft tabs, two spaces)
+set autoindent
+set expandtab
+set shiftwidth=2
+set smartindent
+set smarttab
+set tabstop=2
+set list listchars=extends:…,tab:»·,trail:·
 filetype plugin indent on
 
 "enable solarized color scheme
 syntax enable
+
+"searches
+set ignorecase
+set incsearch
+set smartcase
+set hlsearch
+nnoremap <silent> <leader>H :set hlsearch!<CR>
+nnoremap <silent> <leader>h :nohlsearch<CR>
 
 "use the transparent background
 let g:solarized_termtrans = 1
