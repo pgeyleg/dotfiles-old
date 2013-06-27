@@ -36,8 +36,14 @@ map <leader>/ <plug>NERDCommenterToggle
 map \ :NERDTreeToggle<CR>
 map \| :NERDTreeFind<CR>
 
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+"exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
-" Index ctags from any project, including those outside Rails
+"index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
+
+"quick window navigation 
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
