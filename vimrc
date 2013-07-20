@@ -88,10 +88,10 @@ let g:syntastic_enable_signs=1
 set pastetoggle=<F2>
 
 "stop using these keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 "to be ignored
 set wildignore+=*.class,*.o,.DS_Store
